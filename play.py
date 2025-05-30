@@ -6,13 +6,19 @@ Play the game:
     4. Limit to 4 guesses
 """
 from game_class import WordleString, Guesses
+import random
+import nltk
+from nltk.corpus import words
 
-# automate this
-answer = "CRANE"
+
+nltk.download('words')
+
+five_letter_words = [w for w in words.words() if len(w) == 5]
+answer = random.choice(five_letter_words).upper()
 
 guesses = Guesses(answer=answer)
 
-for _ in range(5):
+for _ in range(6):
     new_guess = input("Guess something queen >>> ")
     if len(new_guess) != 5:
         new_guess = input("Guess something that's 5 letters or more queen >>> ")
@@ -22,3 +28,5 @@ for _ in range(5):
     if correction_result:
         print("YAY DONE")
         break
+
+print(f"Word was {answer}")
