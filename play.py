@@ -20,8 +20,10 @@ guesses = Guesses(answer=answer)
 
 for _ in range(6):
     new_guess = input("Guess something queen >>> ")
-    if len(new_guess) != 5:
+    while len(new_guess) != 5:
         new_guess = input("Guess something that's 5 letters or more queen >>> ")
+    while new_guess not in five_letter_words:
+        new_guess = input("Guess something that's actually a word queen >>> ")
     new_wordle_string = WordleString(new_guess.upper())
     guesses.add_guess(new_wordle_string)
     correction_result = guesses.correct(guess=guesses.get_last_guess())
